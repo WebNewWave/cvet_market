@@ -71,8 +71,9 @@
     var a = items();
     if (!a.length) return "";
     var lines = [];
-    lines.push("Здравствуйте! Хочу заказать у вас цветы 🌸");
+    lines.push("Здравствуйте! Хочу оформить заказ 🌸");
     lines.push("");
+    lines.push("Цветы и количество:");
     for (var i = 0; i < a.length; i++) {
       var it = a[i];
       lines.push((i + 1) + ". «" + it.p.name + "» — " + it.stems + " цветов × " + it.qty + " шт. = " + rub(it.line));
@@ -80,6 +81,12 @@
     }
     lines.push("");
     lines.push("Итого: " + rub(total()));
+    lines.push("");
+    lines.push("Адрес доставки:");
+    lines.push("Когда доставить:");
+    lines.push("Номер получателя:");
+    lines.push("Имя получателя:");
+    lines.push("Личные пожелания:");
     lines.push("");
     lines.push("Доставка: бесплатно по Москве 🚚");
     lines.push("Буду благодарен(а) за подтверждение и удобное время доставки!");
