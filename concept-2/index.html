@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Цветы с душой — Движение · Цветочный маркет</title>
+  <meta name="description" content="Авторские букеты с душой. Бесплатная доставка по Москве." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="wrap header__inner">
+      <a class="logo" href="#top">цветы.<span>душа</span></a>
+      <nav class="nav">
+        <a href="#catalog">Каталог</a>
+        <a href="#story">О нас</a>
+        <a href="#delivery">Доставка</a>
+        <a href="https://t.me/cvetochniy_market" target="_blank" rel="noopener">Канал</a>
+      </nav>
+      <button class="cart-btn" data-act="open-cart" aria-label="Открыть корзину">
+        <span class="cart-btn__icon">🛒</span>
+        <span class="cart-btn__count" id="cartBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="petals" aria-hidden="true">
+        <span class="petal p1">❀</span><span class="petal p2">✿</span><span class="petal p3">❀</span>
+        <span class="petal p4">✿</span><span class="petal p5">❀</span><span class="petal p6">✿</span>
+        <span class="petal p7">❀</span><span class="petal p8">✿</span>
+      </div>
+      <div class="wrap hero__inner">
+        <div class="hero__text">
+          <p class="hero__eyebrow">● Цветочный маркет · Москва</p>
+          <h1 class="hero__title">Цветы<br />с <span class="grad">душой</span><br />и движением.</h1>
+          <p class="hero__lead">Авторские букеты, которые несут эмоцию. Соберите свой — число цветов меняется в один клик.</p>
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#catalog">Смотреть каталог</a>
+            <a class="btn btn--ghost" href="https://t.me/cvet_market" target="_blank" rel="noopener">Telegram</a>
+          </div>
+          <p class="hero__note">🚚 Бесплатная доставка по Москве</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-head__eyebrow">— каталог</p>
+          <h2 class="section-head__title">Выбери&nbsp;свой букет</h2>
+          <p class="section-head__sub">Реальные фото и цены. Меняйте количество цветов — цена пересчитается.</p>
+        </div>
+        <div class="filters" id="filters"></div>
+        <div class="catalog" id="catalogGrid"></div>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="wrap story__inner">
+        <h2 class="story__title">Оазис красоты <span class="grad">посреди суеты.</span></h2>
+        <div class="story__grid">
+          <div class="story__card"><h3>Забота</h3><p>Каждый цветок — вручную. Каждый букет — под настроение.</p></div>
+          <div class="story__card"><h3>Движение</h3><p>Мы не делаем «просто цветы» — мы делаем повод вспомнить, зачем вы здесь.</p></div>
+          <div class="story__card"><h3>Радость</h3><p>Подарите близким тёплый свет, который не зависит от сезона.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="delivery">
+      <div class="wrap features__grid">
+        <div class="feature"><span class="feature__num">01</span><h3>Бесплатная доставка</h3><p>По Москве — бесплатно. В удобное время.</p></div>
+        <div class="feature"><span class="feature__num">02</span><h3>Свежесть</h3><p>Напрямую от поставщиков, без долгого хранения.</p></div>
+        <div class="feature"><span class="feature__num">03</span><h3>Авторский подход</h3><p>Соберём композицию под ваш повод и бюджет.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer__inner">
+      <div class="footer__brand">
+        <a class="logo logo--light" href="#top">цветы.<span>душа</span></a>
+        <p>Для тех, кто умеет ценить красоту.</p>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <a href="https://t.me/cvet_market" target="_blank" rel="noopener">📩 @cvet_market</a>
+        <a href="https://t.me/cvetochniy_market" target="_blank" rel="noopener">📢 @cvetochniy_market</a>
+        <a href="tel:+79109701991">📞 +7 910 970-19-91</a>
+        <a href="https://cvetomarket.tilda.ws" target="_blank" rel="noopener">🌐 cvetomarket.tilda.ws</a>
+      </div>
+    </div>
+    <div class="footer__bottom">© 2026 Цветочный маркет · Москва · Концепт «Движение»</div>
+  </footer>
+
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart__overlay" data-act="close-cart"></div>
+    <div class="cart__panel">
+      <header class="cart__head">
+        <h2 class="cart__title">Корзина</h2>
+        <button class="cart__close" data-act="close-cart" aria-label="Закрыть">×</button>
+      </header>
+      <div class="cart__items" id="cartItems"></div>
+      <div class="cart__empty" id="cartEmpty">Корзина пуста 🌷<br /><span>Добавьте букет из каталога.</span></div>
+      <footer class="cart__foot">
+        <div class="cart__total">Итого: <strong id="cartTotal">0 ₽</strong></div>
+        <button class="cart__checkout" data-act="checkout">Оформить заказ в Telegram →</button>
+        <p class="cart__note">Без регистрации. Откроется Telegram с готовым текстом заказа.</p>
+      </footer>
+    </div>
+  </aside>
+
+  <script src="../assets/data.js"></script>
+  <script src="../assets/store.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

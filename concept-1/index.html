@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Цветы с душой — Ателье · Цветочный маркет</title>
+  <meta name="description" content="Авторские букеты с душой. Бесплатная доставка по Москве." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="wrap header__inner">
+      <a class="logo" href="#top">Цветы<span>с душой</span></a>
+      <nav class="nav">
+        <a href="#catalog">Каталог</a>
+        <a href="#story">О нас</a>
+        <a href="#delivery">Доставка</a>
+        <a href="https://t.me/cvetochniy_market" target="_blank" rel="noopener">Канал</a>
+      </nav>
+      <button class="cart-btn" data-act="open-cart" aria-label="Открыть корзину">
+        <span class="cart-btn__icon">🛒</span>
+        <span class="cart-btn__count" id="cartBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__text reveal">
+          <p class="hero__eyebrow">Цветочный маркет · Москва</p>
+          <h1 class="hero__title">Букет&nbsp;—<br />как искусство<br /><em>с душой</em></h1>
+          <p class="hero__lead">Для тех, кто умеет ценить красоту. Авторские композиции, свежесть и забота в каждом лепестке.</p>
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#catalog">Смотреть каталог</a>
+            <a class="btn btn--ghost" href="https://t.me/cvet_market" target="_blank" rel="noopener">Заказать в Telegram</a>
+          </div>
+          <p class="hero__note">🌸 Бесплатная доставка по Москве</p>
+        </div>
+        <div class="hero__media reveal">
+          <img src="https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=1100&q=80" alt="Букет роз" loading="eager" />
+          <span class="hero__stamp">свежесть<br />гарантирована</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="section-head__eyebrow">Каталог</p>
+          <h2 class="section-head__title">Авторские букеты</h2>
+          <p class="section-head__sub">Выберите цветы и соберите букет под настроение — число цветов можно менять прямо в карточке.</p>
+        </div>
+        <div class="filters" id="filters"></div>
+        <div class="catalog" id="catalogGrid"></div>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="wrap story__inner">
+        <blockquote class="story__quote reveal">
+          «Наш цветочный маркет — это не просто точка продаж, а настоящий оазис красоты, аромата и вдохновения посреди суеты.»
+        </blockquote>
+        <div class="story__cols">
+          <div class="story__col reveal"><h3>Забота</h3><p>Мы выбираем каждый цветок вручную и бережно собираем букет, чтобы он доехал свежим.</p></div>
+          <div class="story__col reveal"><h3>Внимание</h3><p>Учитываем повод, цвет и характер — дарим не просто цветы, а эмоцию.</p></div>
+          <div class="story__col reveal"><h3>Радость</h3><p>Дарите близким момент тепла. Остальное — наша работа.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="delivery">
+      <div class="wrap features__grid">
+        <div class="feature reveal"><span class="feature__ico">🚚</span><h3>Бесплатная доставка</h3><p>По Москве — всегда бесплатно, в удобное для вас время.</p></div>
+        <div class="feature reveal"><span class="feature__ico">🌿</span><h3>Свежесть</h3><p>Работаем напрямую с поставщиками, без долгого хранения.</p></div>
+        <div class="feature reveal"><span class="feature__ico">💐</span><h3>Авторский подход</h3><p>Составим композицию под ваш повод и бюджет.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer__inner">
+      <div class="footer__brand">
+        <a class="logo logo--light" href="#top">Цветы<span>с душой</span></a>
+        <p>Для тех, кто умеет ценить красоту.</p>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <a href="https://t.me/cvet_market" target="_blank" rel="noopener">📩 Заказ: @cvet_market</a>
+        <a href="https://t.me/cvetochniy_market" target="_blank" rel="noopener">📢 Канал: @cvetochniy_market</a>
+        <a href="tel:+79109701991">📞 +7 910 970-19-91</a>
+        <a href="https://cvetomarket.tilda.ws" target="_blank" rel="noopener">🌐 cvetomarket.tilda.ws</a>
+      </div>
+      <div class="footer__note">
+        <p>Концепт «Ателье». Демо-версия для согласования дизайна.</p>
+      </div>
+    </div>
+    <div class="footer__bottom">© 2026 Цветочный маркет · Москва</div>
+  </footer>
+
+  <!-- Корзина -->
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart__overlay" data-act="close-cart"></div>
+    <div class="cart__panel">
+      <header class="cart__head">
+        <h2 class="cart__title">Ваш букет</h2>
+        <button class="cart__close" data-act="close-cart" aria-label="Закрыть">×</button>
+      </header>
+      <div class="cart__items" id="cartItems"></div>
+      <div class="cart__empty" id="cartEmpty">Корзина пока пуста 🌷<br /><span>Добавьте цветы из каталога.</span></div>
+      <footer class="cart__foot">
+        <div class="cart__total">Итого: <strong id="cartTotal">0 ₽</strong></div>
+        <button class="cart__checkout" data-act="checkout">Оформить заказ в Telegram</button>
+        <p class="cart__note">Без регистрации и передачи личных данных — откроется Telegram с готовым текстом заказа.</p>
+      </footer>
+    </div>
+  </aside>
+
+  <script src="../assets/data.js"></script>
+  <script src="../assets/store.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
