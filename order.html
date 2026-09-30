@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ваш заказ — Цветы с душой</title>
+<style>
+  :root { --ink:#2b2622; --muted:#8a8077; --line:#ece4db; --accent:#b5694f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+         color:var(--ink); background:#fbf8f4; line-height:1.5; }
+  .wrap { max-width: 880px; margin:0 auto; padding: 40px 20px 64px; }
+  header { text-align:center; margin-bottom: 28px; }
+  header .brand { font-family: Georgia, "Times New Roman", serif; font-size: 30px; letter-spacing:.3px; }
+  header .tag { color:var(--muted); margin-top:6px; font-size:15px; }
+  .note { background:#fff; border:1px solid var(--line); border-radius:14px; padding:14px 18px;
+          color:var(--muted); font-size:14px; margin-bottom:24px; }
+  .empty { text-align:center; color:var(--muted); padding:60px 0; font-size:16px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap:18px; }
+  .item { background:#fff; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+          display:flex; flex-direction:column; }
+  .item img { width:100%; height:200px; object-fit:cover; display:block; background:#f0eae3; }
+  .item .body { padding:14px 16px 16px; }
+  .item .name { font-weight:600; font-size:16px; }
+  .item .meta { color:var(--muted); font-size:14px; margin-top:4px; }
+  .item .price { color:var(--accent); font-weight:700; margin-top:8px; }
+  .total { display:flex; justify-content:space-between; align-items:center; margin-top:28px;
+           padding-top:18px; border-top:2px solid var(--line); font-size:20px; font-weight:700; }
+  .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; justify-content:center; }
+  .btn { border:none; border-radius:999px; padding:13px 22px; font-size:15px; font-weight:600;
+         cursor:pointer; text-decoration:none; display:inline-block; }
+  .btn--primary { background:var(--accent); color:#fff; }
+  .btn--ghost { background:#fff; color:var(--ink); border:1px solid var(--line); }
+  footer { text-align:center; color:var(--muted); font-size:13px; margin-top:40px; }
+  .ok { color:#2e7d4f; font-weight:600; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand" id="brandName">Цветы с душой</div>
+      <div class="tag" id="brandTag">Ваш заказ</div>
+    </header>
+
+    <div class="note" id="note">
+      Это ссылка на заказ. Откройте её на любом устройстве и браузере — букет виден полностью.
+      Ссылку можно переслать продавцу или нажать кнопку ниже, чтобы отправить заказ в Telegram.
+    </div>
+
+    <div class="empty" id="empty" style="display:none">Не удалось распознать заказ. Проверьте ссылку.</div>
+
+    <div class="grid" id="items"></div>
+
+    <div class="total" id="totalBox" style="display:none">
+      <span>Итого</span><span id="total">—</span>
+    </div>
+
+    <div class="actions" id="actions" style="display:none">
+      <button class="btn btn--primary" id="toTg">Отправить заказ в Telegram</button>
+      <button class="btn btn--ghost" id="copy">Копировать ссылку</button>
+    </div>
+
+    <footer>Цветы с душой · заказ через Telegram @cvet_market</footer>
+  </div>
+
+  <script src="assets/data.js"></script>
+  <script>
+  (function () {
+    var C = window.CVET;
+    if (C && C.BRAND) {
+      document.getElementById("brandName").textContent = C.BRAND.name || "Цветы с душой";
+      document.getElementById("brandTag").textContent = C.BRAND.tagline || "Ваш заказ";
+    }
+    var params = new URLSearchParams(location.search);
+    var raw = params.get("i") || "";
+    var seg = raw.split(",").filter(Boolean);
+    var grid = document.getElementById("items");
+    var emptyEl = document.getElementById("empty");
+    var totalBox = document.getElementById("totalBox");
+    var actions = document.getElementById("actions");
+    var totalEl = document.getElementById("total");
+
+    function rub(n) { return (n || 0).toLocaleString("ru-RU") + " ₽"; }
+
+    if (!seg.length || !C) { emptyEl.style.display = "block"; return; }
+
+    var sum = 0, html = "", shown = 0;
+    for (var i = 0; i < seg.length; i++) {
+      var parts = seg[i].split("-");
+      var id = parts[0], stems = parseInt(parts[1], 10) || 0, qty = parseInt(parts[2], 10) || 1;
+      var p = null;
+      for (var j = 0; j < C.PRODUCTS.length; j++) { if (C.PRODUCTS[j].id === id) { p = C.PRODUCTS[j]; break; } }
+      if (!p) continue;
+      var line = (p.pp * stems) * qty;
+      sum += line; shown++;
+      html += '' +
+        '<div class="item">' +
+          '<img src="' + C.BRAND.base + p.photo + '" alt="' + (p.name || "") + '" loading="lazy">' +
+          '<div class="body">' +
+            '<div class="name">' + (p.name || "") + '</div>' +
+            '<div class="meta">' + stems + ' цветов × ' + qty + ' шт.</div>' +
+            '<div class="price">' + rub(line) + '</div>' +
+          '</div>' +
+        '</div>';
+    }
+
+    if (!shown) { emptyEl.style.display = "block"; return; }
+    grid.innerHTML = html;
+    totalEl.textContent = rub(sum);
+    totalBox.style.display = "flex";
+    actions.style.display = "flex";
+
+    var orderUrl = location.href;
+    document.getElementById("copy").addEventListener("click", function () {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(orderUrl).then(function () {
+          var b = document.getElementById("copy"); b.textContent = "Скопировано ✓";
+          setTimeout(function () { b.textContent = "Копировать ссылку"; }, 1800);
+        }).catch(function () {});
+      }
+    });
+    document.getElementById("toTg").addEventListener("click", function () {
+      var txt = "Здравствуйте! Хочу оформить заказ 🌸\nФото заказа: " + orderUrl;
+      window.open("https://t.me/" + C.BRAND.bot + "?text=" + encodeURIComponent(txt), "_blank");
+    });
+  })();
+  </script>
+</body>
+</html>

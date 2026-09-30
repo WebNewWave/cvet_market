@@ -6,19 +6,10 @@
   var C = window.CVET;
   var KEY = "cvet_cart_v1";
 
-  /* Фоллбэк-фото по категориям (проверенные Unsplash), если tildacdn недоступен */
-  var FALL = {
-    "Розы": ["1518895949257", "1487070183336", "1526045612212"],
-    "Кустовая роза": ["1526045612212", "1487070183336"],
-    "Пионы": ["1567696911980", "1502977249166"],
-    "Сборные букеты": ["1561181286", "1444930694458", "1416879595882"]
-  };
+  /* Фоллбэк: если локальный WebP недоступен, показываем оригинал с сайта заказчика */
   function fallbackImg(p) {
-    var arr = FALL[p.cat] || FALL["Сборные букеты"];
-    var i = Math.abs(hash(p.id)) % arr.length;
-    return "https://images.unsplash.com/photo-" + arr[i] + "?auto=format&fit=crop&w=900&q=80";
+    return p.img || "";
   }
-  function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h << 5) - h + s.charCodeAt(i) | 0; return h; }
 
   function rub(n) { return (n || 0).toLocaleString("ru-RU") + " ₽"; }
   function byId(id) { for (var i = 0; i < C.PRODUCTS.length; i++) if (C.PRODUCTS[i].id === id) return C.PRODUCTS[i]; return null; }
@@ -70,17 +61,20 @@
   function orderText() {
     var a = items();
     if (!a.length) return "";
+    var sel = [];
     var lines = [];
     lines.push("Здравствуйте! Хочу оформить заказ 🌸");
     lines.push("");
     lines.push("Цветы и количество:");
     for (var i = 0; i < a.length; i++) {
       var it = a[i];
+      sel.push(it.p.id + "-" + it.stems + "-" + it.qty);
       lines.push((i + 1) + ". «" + it.p.name + "» — " + it.stems + " цветов × " + it.qty + " шт. = " + rub(it.line));
-      lines.push("   📷 " + it.p.img);
     }
     lines.push("");
     lines.push("Итого: " + rub(total()));
+    lines.push("");
+    lines.push("Фото заказа: " + C.BRAND.base + "order.html?i=" + encodeURIComponent(sel.join(",")));
     lines.push("");
     lines.push("Адрес доставки:");
     lines.push("Когда доставить:");
@@ -88,7 +82,6 @@
     lines.push("Имя получателя:");
     lines.push("Личные пожелания:");
     lines.push("");
-    lines.push("Доставка: бесплатно по Москве 🚚");
     lines.push("Буду благодарен(а) за подтверждение и удобное время доставки!");
     return lines.join("\n");
   }
@@ -113,7 +106,7 @@
     var html = "";
     for (var i = 0; i < list.length; i++) {
       var p = list[i];
-      var img = p.img, fb = fallbackImg(p);
+      var img = C.BRAND.base + p.photo, fb = fallbackImg(p);
       html += '' +
         '<article class="card" data-id="' + p.id + '">' +
           '<div class="card__media">' +
@@ -175,7 +168,7 @@
       var it = a[i], p = it.p, fb = fallbackImg(p);
       html += '' +
         '<div class="cart-item" data-key="' + it.key + '">' +
-          '<img class="cart-item__img" src="' + p.img + '" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'' + fb + '\'">' +
+          '<img class="cart-item__img" src="' + C.BRAND.base + p.photo + '" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'' + fb + '\'">' +
           '<div class="cart-item__main">' +
             '<h4 class="cart-item__name">' + esc(p.name) + '</h4>' +
             '<div class="cart-item__price js-item-price">' + rub(it.line) + '</div>' +
@@ -220,6 +213,15 @@
 
   /* ---------- делегирование событий ---------- */
   function onAct(e) {
+    // фильтры каталога (кнопки не имеют data-act — обрабатываем до раннего return)
+    var filt = e.target.closest ? e.target.closest("[data-filter]") : null;
+    if (filt) {
+      currentFilter = filt.getAttribute("data-filter");
+      renderFilters(document.getElementById("filters"));
+      renderCatalog(document.getElementById("catalogGrid"));
+      return;
+    }
+
     var t = e.target.closest ? e.target.closest("[data-act]") : null;
     if (!t) return;
     var act = t.getAttribute("data-act");
@@ -228,15 +230,6 @@
     if (act === "close-cart") { closeCart(); return; }
     if (act === "checkout") { checkout(); return; }
     if (act === "clear-cart") { clearCart(); return; }
-
-    // фильтры каталога
-    var filt = e.target.closest ? e.target.closest("[data-filter]") : null;
-    if (filt) {
-      currentFilter = filt.getAttribute("data-filter");
-      renderFilters(document.getElementById("filters"));
-      renderCatalog(document.getElementById("catalogGrid"));
-      return;
-    }
 
     // карточка каталога
     var card = e.target.closest ? e.target.closest(".card") : null;
