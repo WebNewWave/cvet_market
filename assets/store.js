@@ -74,8 +74,6 @@
     lines.push("");
     lines.push("Итого: " + rub(total()));
     lines.push("");
-    lines.push("Фото заказа: " + C.BRAND.base + "order.html?i=" + encodeURIComponent(sel.join(",")));
-    lines.push("");
     lines.push("Адрес доставки:");
     lines.push("Когда доставить:");
     lines.push("Номер получателя:");
@@ -83,6 +81,8 @@
     lines.push("Личные пожелания:");
     lines.push("");
     lines.push("Буду благодарен(а) за подтверждение и удобное время доставки!");
+    lines.push("");
+    lines.push("Чек-лист заказа: " + C.BRAND.base + "order.html?i=" + encodeURIComponent(sel.join(",")));
     return lines.join("\n");
   }
   function checkout() {
