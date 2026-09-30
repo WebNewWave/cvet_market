@@ -110,6 +110,15 @@ img{display:block;max-width:100%}
 .feature h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin-bottom:8px}
 .feature p{color:var(--muted);font-size:.92rem}
 
+/* ---------- usps ---------- */
+.usps{padding:80px 0;background:var(--bg-2)}
+.usps__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.usp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 22px;transition:.3s}
+.usp:hover{border-color:var(--a1);transform:translateY(-4px);box-shadow:0 24px 50px -24px rgba(167,139,250,.5)}
+.usp__ico{font-size:2.4rem;display:block;margin-bottom:14px}
+.usp h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:8px;line-height:1.25}
+.usp p{color:var(--muted);font-size:.9rem}
+
 /* ---------- footer ---------- */
 .site-footer{padding:60px 0 0;border-top:1px solid var(--line);background:var(--bg-2)}
 .footer__inner{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;padding-bottom:40px}
@@ -118,6 +127,7 @@ img{display:block;max-width:100%}
 .footer__contacts h4{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:16px}
 .footer__contacts a{display:block;color:var(--muted);margin-bottom:10px;font-size:.92rem;transition:.2s}
 .footer__contacts a:hover{color:var(--a2)}
+.footer__addr{display:block;color:var(--muted);margin-bottom:10px;font-size:.92rem}
 .footer__bottom{text-align:center;padding:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
 
 /* ---------- cart ---------- */
@@ -158,10 +168,12 @@ img{display:block;max-width:100%}
 /* ---------- responsive ---------- */
 @media(max-width:900px){
   .story__grid,.features__grid{grid-template-columns:1fr}
+  .usps__grid{grid-template-columns:repeat(2,1fr)}
   .footer__inner{grid-template-columns:1fr}
   .nav{display:none}
 }
 @media(max-width:520px){
   .wrap{padding:0 18px}
+  .usps__grid{grid-template-columns:1fr}
   .card__controls .field{flex-direction:column;align-items:flex-start}
 }

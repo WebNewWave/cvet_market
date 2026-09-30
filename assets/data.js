@@ -1,5 +1,5 @@
-/* Каталог «Цветы с душой» — РЕАЛЬНЫЕ данные с сайта cvetomarket.tilda.ws
-   (фото и цены взяты с сайта заказчика). Цена price — реальная за букет
+/* Каталог «Цветы с душой» — РЕАЛЬНЫЕ данные с сайта заказчика
+   (фото и цены взяты из каталога заказчика). Цена price — реальная за букет
    из def цветов; pp — цена за 1 цветок, используется при изменении
    количества цветов в букете. */
 window.CVET = window.CVET || {};
@@ -13,7 +13,7 @@ window.CVET.BRAND = {
   base: "https://webnewwave.github.io/cvet_market/",
   channel: "cvetochniy_market",
   phone: "+79109701991",
-  site: "https://cvetomarket.tilda.ws"
+  site: "https://webnewwave.github.io/cvet_market/"
 };
 
 window.CVET.CATEGORIES = ["Розы", "Кустовая роза", "Пионы", "Сборные букеты"];
