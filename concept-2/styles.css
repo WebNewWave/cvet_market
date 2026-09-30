@@ -115,7 +115,8 @@ img{display:block;max-width:100%}
 .usps__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .usp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 22px;transition:.3s}
 .usp:hover{border-color:var(--a1);transform:translateY(-4px);box-shadow:0 24px 50px -24px rgba(167,139,250,.5)}
-.usp__ico{font-size:2.4rem;display:block;margin-bottom:14px}
+.usp__ico{display:flex;align-items:center;justify-content:center;width:54px;height:54px;margin:0 auto 16px;border-radius:50%;background:rgba(167,139,250,.12);color:var(--a1)}
+.usp__ico svg{width:27px;height:27px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .usp h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:8px;line-height:1.25}
 .usp p{color:var(--muted);font-size:.9rem}
 
@@ -174,6 +175,6 @@ img{display:block;max-width:100%}
 }
 @media(max-width:520px){
   .wrap{padding:0 18px}
-  .usps__grid{grid-template-columns:1fr}
+  .usps__grid{grid-template-columns:repeat(2,1fr)}
   .card__controls .field{flex-direction:column;align-items:flex-start}
 }
