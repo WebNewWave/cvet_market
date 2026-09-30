@@ -76,6 +76,7 @@
     for (var i = 0; i < a.length; i++) {
       var it = a[i];
       lines.push((i + 1) + ". «" + it.p.name + "» — " + it.stems + " цветов × " + it.qty + " шт. = " + rub(it.line));
+      lines.push("   📷 " + it.p.img);
     }
     lines.push("");
     lines.push("Итого: " + rub(total()));
