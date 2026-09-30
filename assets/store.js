@@ -69,16 +69,16 @@
     if (a.length === 1) {
       var only = a[0];
       sel.push(only.p.id + "-" + only.stems + "-" + only.qty);
-      lines.push("«" + only.p.name + "» = " + rub(only.line));
+      lines.push("«**" + only.p.name + "**» = **" + rub(only.line) + "**");
     } else {
       for (var i = 0; i < a.length; i++) {
         var it = a[i];
         sel.push(it.p.id + "-" + it.stems + "-" + it.qty);
-        lines.push((i + 1) + ". «" + it.p.name + "» — " + it.stems + " цветов × " + it.qty + " шт. = " + rub(it.line));
+        lines.push((i + 1) + ". «**" + it.p.name + "**» — " + it.stems + " цветов × " + it.qty + " шт. = **" + rub(it.line) + "**");
       }
     }
     lines.push("");
-    lines.push("Итого: " + rub(total()));
+    lines.push("Итого: **" + rub(total()) + "**");
     lines.push("");
     lines.push("Адрес доставки:");
     lines.push("Когда доставить:");
